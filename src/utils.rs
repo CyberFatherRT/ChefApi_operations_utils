@@ -2,7 +2,6 @@ use crate::{libs::base64::from_base64, map, regex_check, traits::StringTrait};
 use num::{Integer, ToPrimitive};
 use serde::Deserialize;
 use std::fmt::{Debug, LowerHex};
-use unicode_segmentation::UnicodeSegmentation;
 
 // region constants
 
@@ -63,7 +62,7 @@ pub const NUM: (&str, &str) = ("0123456789", r"^\+?(0|[1-9]\d*)$");
 
 pub fn expand_alphabet_range(alphabet: &str) -> Vec<char> {
     let mut result: Vec<char> = Vec::new();
-    let alphabet_length = alphabet.graphemes(true).count();
+    let alphabet_length = alphabet.chars().count();
     let mut i = 0;
 
     while i < alphabet_length {
@@ -98,7 +97,7 @@ pub fn str_to_array_buffer(string: &str) -> Vec<u32> {
         return Vec::new();
     }
 
-    let string_length = string.graphemes(true).count();
+    let string_length = string.chars().count();
     let mut result: Vec<u32> = vec![0; string_length];
 
     for (idx, elem) in result.iter_mut().enumerate() {
@@ -113,7 +112,7 @@ pub fn str_to_array_buffer_by_alphabet(string: &str, alphabet: &str) -> Vec<usiz
         return Vec::new();
     }
 
-    let string_length = string.graphemes(true).count();
+    let string_length = string.chars().count();
     let mut result: Vec<usize> = vec![0; string_length];
     for (idx, c) in string.chars().enumerate() {
         result[idx] = get_index_by_char(alphabet, c);

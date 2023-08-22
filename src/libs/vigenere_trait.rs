@@ -1,6 +1,5 @@
 use regex::Regex;
 use std::collections::HashMap;
-use unicode_segmentation::UnicodeSegmentation;
 
 use crate::{
     traits::CharTrait,
@@ -24,8 +23,8 @@ pub trait VigenereCipher {
         let mut index = 0usize;
         let mut cipher_text = String::new();
 
-        let key_len = key.graphemes(true).count();
-        let alp_len = alp.graphemes(true).count() as i16;
+        let key_len = key.chars().count();
+        let alp_len = alp.chars().count() as i16;
 
         for c in input.chars() {
             if !rg.is_match(&c.to_string()) {

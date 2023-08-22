@@ -6,7 +6,6 @@ use crate::{
     },
 };
 use itertools::Itertools;
-use unicode_segmentation::UnicodeSegmentation;
 
 pub fn to_base64(data: &[u8], alphabet: Option<String>) -> Result<String, String> {
     if data.is_empty() {
@@ -17,7 +16,7 @@ pub fn to_base64(data: &[u8], alphabet: Option<String>) -> Result<String, String
 
     let alphabet = expand_alphabet_range(&alphabet).iter().collect::<String>();
 
-    let alphabet_length = alphabet.graphemes(true).count();
+    let alphabet_length = alphabet.chars().count();
 
     if alphabet_length != 64 && alphabet_length != 65 {
         return Err("Invalid base64 alphabet length.".to_string());
@@ -77,7 +76,7 @@ pub fn from_base64(
     }
 
     let alphabet = expand_alphabet_range(alphabet).iter().collect::<String>();
-    let alphabet_length = alphabet.graphemes(true).count();
+    let alphabet_length = alphabet.chars().count();
 
     if alphabet_length != 64 && alphabet_length != 65 {
         return Err("Invalid base64 alphabet length.".to_string());
