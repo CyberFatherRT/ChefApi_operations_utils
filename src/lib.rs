@@ -69,3 +69,9 @@ pub enum Operations {
     VigenereCipherDecode,
     VigenereCipherEncode,
 }
+
+impl ToString for Operations {
+    fn to_string(&self) -> String {
+        format!("{:?}", self)
+    }
+}
