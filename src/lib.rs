@@ -36,7 +36,7 @@ where
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub enum Operations {
     A1Z26CipherDecode,
     A1Z26CipherEncode,
