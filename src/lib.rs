@@ -37,41 +37,47 @@ where
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub enum Operations {
+pub enum OperationCiphers {
     A1Z26CipherDecode,
     A1Z26CipherEncode,
-    Adler32CheckSum,
     AffineCipherDecode,
     AffineCipherEncode,
-    AnalyseHash,
-    Argon2Compare,
-    Argon2,
     AtbashCipher,
-    Bcrypt,
-    BcryptCompare,
-    BcryptParse,
     BifidCipherEncode,
-    Blake2b,
-    Blake2s,
-    FromBase64,
-    FromBase,
-    HMAC,
-    MD2,
-    MD4,
-    MD5,
     RSADecrypt,
     RSAEncrypt,
-    SHA1,
-    SHA2,
-    SHA3,
-    ToBase64,
-    ToBase,
     VigenereCipherDecode,
     VigenereCipherEncode,
 }
 
-impl ToString for Operations {
-    fn to_string(&self) -> String {
-        format!("{:?}", self)
-    }
+#[derive(Serialize, Deserialize, Debug)]
+pub enum OperationCrypto {
+    Adler32CheckSum,
+    Argon2Compare,
+    Argon2,
+    Bcrypt,
+    BcryptCompare,
+    BcryptParse,
+    Hmac,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub enum OperationDefault {
+    FromBase64,
+    FromBase,
+    ToBase64,
+    ToBase,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub enum OperationsHashing {
+    AnalyseHash,
+    Blake2b,
+    Blake2s,
+    MD2,
+    MD4,
+    MD5,
+    SHA1,
+    SHA2,
+    SHA3,
 }
