@@ -42,13 +42,13 @@ impl StringTrait for String {
     }
 
     fn regex_replace_all(&self, regex_str: &str, replacement: &str) -> Result<String, String> {
-        let re = regex::Regex::new(regex_str).map_err(String::from("wrong regex"))?;
+        let re = regex::Regex::new(regex_str).map_err(|_| String::from("wrong regex"))?;
         let output: String = re.replace_all(regex_str, replacement).to_string();
         Ok(output)
     }
 
     fn regex_replace(&self, regex_str: &str, replacement: &str) -> Result<String, String> {
-        let re = regex::Regex::new(regex_str).map_err(String::from("wrong regex"))?;
+        let re = regex::Regex::new(regex_str).map_err(|_| String::from("wrong regex"))?;
         let output: String = re.replace(regex_str, replacement).to_string();
         Ok(output)
     }
@@ -56,7 +56,7 @@ impl StringTrait for String {
         let mut c = self.chars();
         match c.next() {
             None => String::new(),
-            Some(f) => f.to_upper_case() + c.as_str(),
+            Some(f) => format!("{}{}", f.to_upper_case(), c.as_str()),
         }
     }
 }
