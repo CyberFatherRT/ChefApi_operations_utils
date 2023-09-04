@@ -61,7 +61,7 @@ impl StringTrait for String {
         let mut c = self.chars();
         match c.next() {
             None => String::new(),
-            Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+            Some(f) => f.to_upper_case() + c.as_str(),
         }
     }
 }
