@@ -42,18 +42,13 @@ impl StringTrait for String {
     }
 
     fn regex_replace_all(&self, regex_str: &str, replacement: &str) -> Result<String, String> {
-        let Ok(re) = regex::Regex::new(regex_str) else {
-            return Err(String::from("wrong regex"));
-        };
+        let re = regex::Regex::new(regex_str).map_err(String::from("wrong regex"))?;
         let output: String = re.replace_all(regex_str, replacement).to_string();
         Ok(output)
     }
 
     fn regex_replace(&self, regex_str: &str, replacement: &str) -> Result<String, String> {
-        let Ok(re) = regex::Regex::new(regex_str) else {
-            return Err(String::from("wrong regex"));
-        };
-
+        let re = regex::Regex::new(regex_str).map_err(String::from("wrong regex"))?;
         let output: String = re.replace(regex_str, replacement).to_string();
         Ok(output)
     }
