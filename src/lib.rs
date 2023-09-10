@@ -13,7 +13,7 @@ where
     I: Deserialize<'a>,
     O: Serialize,
 {
-    fn run(&self, request: &str) -> Result<O, String>;
+    fn do_black_magic(&self, request: &str) -> Result<O, String>;
     fn validate(&self, request: &'a str) -> Result<I, String> {
         self.deserialize(request)
     }
